@@ -1,226 +1,293 @@
 <?php
-$tokuten = 85;
-if ($tokuten>=80) {
-	echo "最高！ ";
-}
-echo "{$tokuten}でした！";
+echo 'こんにちは';
 ?>
 
 <?php
-$tokuten = 79;
-if ($tokuten>=80) {
-	echo "最高！　";
-}
-echo "{$tokuten}でした。";
+$who = 'php 7';
+echo "こんにちは、", $who;
 ?>
 
 <?php
-$tokuten = 50;
-if ($tokuten>=80) {
-	echo "素晴らしい！ ";
+echo "みなさん, ";
+echo "こんにちは";
+echo PHP_EOL;
+echo "みなさん, "; echo "こんばんは";
+?>
+
+<?php
+echo "こんにちは、";
+ECHO "こんばんは";
+?>
+
+<?php
+$mycolor = "red";
+$MYCOLOR = "RED";
+
+echo $mycolor;
+echo "、";
+echo $MYCOLOR;
+?>
+
+<?php
+$size = "M";
+$price = "¥1200";
+
+echo $size, ",";
+echo $price, "です";
+?>
+
+<?php
+$Math = "65";
+$English = "70";
+$Science = "85";
+$total = $Math + $English + $Science;
+
+$heikin = $total / 3 ;
+
+echo "数学の点数は", $Math, "です。";
+echo PHP_EOL;
+echo "英語の点数は", $English, "です。";
+echo PHP_EOL;
+echo "科学の点数は", $Science, "です。";
+echo PHP_EOL;
+echo "三教科の平均点数は", $heikin, "です。";
+?>
+
+<?php
+$zaiko = "在庫なし";
+echo $zaiko;
+echo PHP_EOL;
+$zaiko = 5;
+echo $zaiko;
+echo PHP_EOL;
+
+const tax = 1.08;
+$prise = 1250;
+$total = $prise * tax;
+echo $total;
+echo PHP_EOL;
+// <br> => htmlでの表記はされないが、コンソール上では表示されたしまう
+// echo PHP_EOL; => htmlとコンソール上のどちらでも表示されない
+?>
+
+<?php
+$mag = "ハローグッバイ";
+print($mag);
+?>
+
+<?php
+$name = "佐藤";
+$age = "29";
+print $name. "さん". $age. "歳";
+?>
+
+<?php
+$color = array("Red", "Green", "Blue"); // 配列の値の設定
+$now = new DateTime(); // 現在時刻の表示
+print_r($color); // print_r関数での出力
+print_r($now);
+?>
+
+<?php
+$msg = "佐藤さん";
+$colors = array("Red", "Green", "Blue");
+$now = new DateTime();
+$tensuu = "45";
+$isPass = ($tensuu > 80);
+$name;
+
+var_dump($msg);
+var_dump($colors);
+var_dump($now);
+var_dump($tensuu);
+var_dump($isPass);
+var_dump($name);
+?>
+
+<?php
+$a = 100;
+$b = $a + 1;
+
+var_dump($a);
+var_dump($b);
+?>
+
+<?php  // 代入演算子
+$a = $b = $c = 100;
+
+var_dump($a);
+var_dump($b);
+var_dump($c);
+?>
+
+<?php // 複合代入演算子
+$a = 0;
+$a += 10;
+
+var_dump($a);
+?>
+
+<?php // 算術演算子
+$total = 80 + 40;
+$result = $total - 5;
+
+echo "合計{$total},最終結果{$result}"; // 変数を"{}"で囲むと表示を行える
+?>
+
+<?php
+$total = 5450;
+$amari = $total % 4;
+$hitori = ($total - $amari) / 4;
+
+echo "1人{$hitori}円、不足{$amari}円";
+?>
+
+<?php
+$ans = 11.6 % 4.1;
+echo $ans; // 小数点以下は切り捨て
+?>
+
+<?php
+$ninzu = "3人" + "2人"; // 文字列でも指定可能（文字のジャグリングを行う) => ※ 警告文はコンソールに出る
+$price = "500円" * $ninzu;
+$price = $price * "1.08 消費税";
+echo "料金は{$price}円、人数は{$ninzu}人";
+?>
+
+<?php
+$a = 0;
+$b = ++$a;
+echo "aは{$a}、bは{$b}";
+?>
+
+<?php // インクリメント/デクリメント
+$a = 0;
+$b = $a++;
+echo "aは{$a}、bは{$b}";
+?>
+
+<?php // ポストインクリメント/ポストデクリメント
+$myNum = "19";
+$myChar = "a";
+++$myNum;	// 数字の値にプラスされる
+++$myChar;	// アルファベットにプラスされる
+echo "myNumは{$myNum}、myCharは{$myChar}";
+?>
+
+<?php // 文字列結合演算子
+$who = "Bob";
+$hello = "Goodmorning ";
+$msg = $who."！".$hello;
+echo $msg;
+?>
+
+<?php // 数値と文字の連結をピリオドで行う
+$num = 19+1;
+$msg1 = $num. "番". PHP_EOL;
+$msg2 = $num. 77;
+echo $msg1;
+echo $msg2;
+?>
+
+<?php // 比較演算子
+$a = 7;
+$b =10;
+$judge1 = ($a<$b);
+$judge2 = ($a>$b);
+var_dump($judge1);
+var_dump($judge2);
+?>
+
+<?php
+$point = 11.6;
+if ($point >= 10) { // pointが10以上(10ぴったりでも可)でtrue条件
+	echo "合格";
 } else {
-	echo "もう少し！";
+	echo "不合格";
 }
-echo "{$tokuten}でした！";
 ?>
 
 <?php
-$age = 18;
-if ($age<13) {
-	$price = 0;
-} elseif ($age<=15) {
-	$price = 500;
-} elseif ($age<=19) {
-	$price = 1000;
+$prise = 250 * ($kosuu ?? 2);
+var_dump($kosuu); // $kosuuがNULLだが計算を行って出力してくれる
+echo $price;
+?>
+
+<?php
+$judge1 = ("99" == 99); // 文字列の99と数値の99が同じかの判定
+$judge2 = ("99" != 99); // 文字列と数値の型が違う判定
+var_dump($judge1);
+var_dump($judge2);
+?>
+
+<?php
+$judge1 = ("99" === 99); // 値だけでなく型も同じかの判定
+$judge2 = ("99" !== 99); // 文字列と数値の型が違う判定
+var_dump($judge1);
+var_dump($judge2);
+?>
+
+<?php // 論理演算子
+$test1 = true;
+$test2 = false;
+$judge1 = $test1 && $test2;	// aかつbがtrueの場合
+$judge2 = $test1 || $test2; // aまたはbがtrueの場合
+$judge3 = !$test1;			// 条件の否定(aがtrueならb,bがfalseならtrue)
+var_dump($judge1);
+var_dump($judge2);
+var_dump($judge3);
+?>
+
+<?php
+$test1 = true;
+$test2 = false;
+$judge1 = ($test1 and $test2);	// &&と同義　※()が必要
+$judge2 = ($test1 or $test2); 	// ||と同義　※()が必要
+var_dump($judge1);
+var_dump($judge2);
+?>
+
+<?php
+$test1 = true;
+$test2 = false;
+$judge1 = $test1 and $test2;	// ()がないと=が優先されてしまう　※ $judge1 = $test1
+$judge2 = $test1 or $test2; 	// ()がないと=が優先されてしまう　※ $judge2 = $test1
+var_dump($judge1); // 論理値の出力(var_dump関数)
+var_dump($judge2);
+?>
+
+<?php // 三項演算子
+$a = mt_rand(0,50); // ランダムで値の指定(0~50)
+$b = mt_rand(0,50);
+$bigger = ($a>$b)? $a : $b;
+echo "大きな値は{$bigger},aは{$a}でbは{$b}";
+?>
+
+<?php
+$a = mt_rand(0,50); // ランダムで値の指定(0~50)
+$b = mt_rand(0,50);
+if ($a>$b) {
+	$bigger = $a;
 } else {
-	$price = 2000;
+	$bigger =$b;
 }
-echo "{$age}歳は{$price}円です。";
+echo "大きな値は{$bigger},aは{$a}でbは{$b}";
 ?>
 
-<?php // if文のネスト
-$math = 90;
-$eng = 70;
-if ($math>=60) {			// Mathが60点以上の場合、ネストのifに進む
-	if ($eng>=60) {			// Mathが60点以上で、Engも60点以上の場合
-		echo "合格です。";
-	} else {				// Mathが60点以上で、Engが60点以下の場合
-		echo "不合格です。";
-	}
-} else {
-	echo "不合格です。";		// Mathが60点以下での場合
-}
+<?php // キャスト演算子
+$theDate = new DateTime();
+$isAccess = (bool)$theDate; // $theDateに値が入っているのでtrue
+var_dump($isAccess);
 ?>
 
 <?php
-$math = 59;
-$eng = 80;
-if (($math>=60)&&($eng>=60)) {	// どちらも60点以上であった場合
-	echo "合格です。";
-} else {
-	echo "不合格です。";
-}
+$theDate = "";
+$isAccess = (bool)$theDate; // $theDateに値が入っていないのでfalse
+var_dump($isAccess);
 ?>
 
-<?php
-$math = 59;
-$eng = 80;
-if (($math>=60)||($eng>=60)) {	// どちらかが60点以上であった場合
-	echo "合格です。";
-} else {
-	echo "不合格です。";
-}
+<?php // 型演算子
+$now = new DateTime();
+$isDate = $now instanceof DateTime;
+var_dump($isDate);
 ?>
-
-<?php
-$sex = "woman";
-$age = 42;
-if ($sex == "woman") {			// 性別のtrue
-	if (($age>=30)&&($age<40)){	// 年齢のtrue
-		echo "採用致します。";
-	} else {					// 年齢条件のfalse
-		echo "適正年齢を超えています。";
-	}
-} else {
-	echo "女性のみの募集です。";	// 性別のfalse
-}
-?>
-
-<?php
-$color = "red";
-switch ($color) {
-	case "green":	// 値がGreenの場合、$priceは120円
-		$price = 120;
-		break;
-	case "red":		// 値がRedの場合、$priceは140円
-		$price = 140;
-		break;
-	case "blue":	// 値がBlueの場合、$priceは160円
-		$price = 160;
-		break;
-	default:		// 値がそれ以外の場合、$priceは100円
-		$price = 100;
-		break;
-}
-echo "{$color}は{$price}円です。";
-?>
-
-<?php
-$color = "yellow";
-$price = 100;
-switch ($color) { // switchに条件指定がない場合の処理
-	case "red":
-		$price = 120;
-		break;
-	case "blue":
-		$price = 160;
-		break;
-}
-echo "{$color}は{$price}円です。";
-?>
-
-<?php
-$color = "green";
-switch ($color) {
-	case "green":	// 値がGreenとRedの場合
-	case "red":		// Breakさせずに条件を増やす(GreenもRedも同じ値段)
-		$price = 140;
-		break;
-	case "blue":
-		$price = 160;
-		break;
-	default:
-		$price = 100;
-		break;
-}
-echo "{$color}は{$price}円です。";
-?>
-
-<?php
-$numArray = array();
-while (count($numArray)<5) {	// 配列$numArrayが5になるまでの繰り返し
-	$num = mt_rand(1,30);		// 変数$numにランダムで1〜30の値を代入
-	if (!in_array($num, $numArray)) {
-		array_push($numArray, $num);
-	}
-}
-print_r($numArray);
-?>
-
-<?php
-do {
-	$a = mt_rand(1,13);
-	$b = mt_rand(1,13);
-	$c = mt_rand(1,13);
-	$abc = $a + $b + $c;
-
-	if ($abc == 21) { // ループを抜ける合計値の設定
-		break;
-	}
-} while (TRUE); // 無限ループ
-echo "合計値が21になる3個の数字、{$a},{$b},{$c}";
-?>
-
-<?php
-for ($i=0; $i < 10; $i++) { // 10までのカウントアップ
-	echo "{$i}回。";
-}
-?>
-
-<?php
-for ($i=10; $i > 0; $i--) { // 10からのカウントダウン
-	echo "{$i}回。";
-}
-?>
-
-<?php
-$price = 0;
-for ($kazu=1; $kazu <= 6; $kazu++) { // $kazuが6になるまでループ
-	if ($kazu<=3) {	// 3人までは1000円
-		$price += 1000;
-	} else { // それ以外は500円
-		$price += 500;
-	}
-	echo "{$kazu}人、{$price}円。";
-}
-?>
-
-<?php
-for ($i=0; $i <=3 ; $i++) { // $iが3までのfor文
-	for ($j=0; $j <=5 ; $j++) { // for文のネストで新たに$jの5目での指定を行う
-		echo "{$i}-{$j}". "|";
-	}
-	echo PHP_EOL;
-}
-?>
-
-<?php
-$list = array(20, 32, 50, -5, 40);
-$count = count($list);
-$sum = 0;
-for ($i=0; $i < $count; $i++) {
-	$value = $list[$i];
-	if ($value<0) {
-		$sum = "マイナスの値{$value}が検出されたので中断致しました。";
-		break; // 配列からマイナスの値が検出された場合はBreakで処理を中断する
-	} else {
-		$sum += $value;
-	}
-}
-echo "合計：$sum". PHP_EOL;
-?>
-
-<?php
-$list = array(20, -32, 50, -5, 40);
-$count = count($list);
-$sum = 0;
-for ($i=0; $i < $count; $i++) {
-	$value = $list[$i];
-	if ($value<0) {
-		continue; // マイナスの値を無視してプラスの値だけ計算処理する
-	}
-	$sum += $value; // 鰓裂内のプラスの値のみ足して表示する
-}
-echo "合計：$sum". PHP_EOL;
-?>
-
