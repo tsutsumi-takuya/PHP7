@@ -135,3 +135,92 @@ switch ($color) {
 }
 echo "{$color}は{$price}円です。";
 ?>
+
+<?php
+$numArray = array();
+while (count($numArray)<5) {	// 配列$numArrayが5になるまでの繰り返し
+	$num = mt_rand(1,30);		// 変数$numにランダムで1〜30の値を代入
+	if (!in_array($num, $numArray)) {
+		array_push($numArray, $num);
+	}
+}
+print_r($numArray);
+?>
+
+<?php
+do {
+	$a = mt_rand(1,13);
+	$b = mt_rand(1,13);
+	$c = mt_rand(1,13);
+	$abc = $a + $b + $c;
+
+	if ($abc == 21) { // ループを抜ける合計値の設定
+		break;
+	}
+} while (TRUE); // 無限ループ
+echo "合計値が21になる3個の数字、{$a},{$b},{$c}";
+?>
+
+<?php
+for ($i=0; $i < 10; $i++) { // 10までのカウントアップ
+	echo "{$i}回。";
+}
+?>
+
+<?php
+for ($i=10; $i > 0; $i--) { // 10からのカウントダウン
+	echo "{$i}回。";
+}
+?>
+
+<?php
+$price = 0;
+for ($kazu=1; $kazu <= 6; $kazu++) { // $kazuが6になるまでループ
+	if ($kazu<=3) {	// 3人までは1000円
+		$price += 1000;
+	} else { // それ以外は500円
+		$price += 500;
+	}
+	echo "{$kazu}人、{$price}円。";
+}
+?>
+
+<?php
+for ($i=0; $i <=3 ; $i++) { // $iが3までのfor文
+	for ($j=0; $j <=5 ; $j++) { // for文のネストで新たに$jの5目での指定を行う
+		echo "{$i}-{$j}". "|";
+	}
+	echo PHP_EOL;
+}
+?>
+
+<?php
+$list = array(20, 32, 50, -5, 40);
+$count = count($list);
+$sum = 0;
+for ($i=0; $i < $count; $i++) {
+	$value = $list[$i];
+	if ($value<0) {
+		$sum = "マイナスの値{$value}が検出されたので中断致しました。";
+		break; // 配列からマイナスの値が検出された場合はBreakで処理を中断する
+	} else {
+		$sum += $value;
+	}
+}
+echo "合計：$sum". PHP_EOL;
+?>
+
+<?php
+$list = array(20, -32, 50, -5, 40);
+$count = count($list);
+$sum = 0;
+for ($i=0; $i < $count; $i++) {
+	$value = $list[$i];
+	if ($value<0) {
+		continue; // マイナスの値を無視してプラスの値だけ計算処理する
+	}
+	$sum += $value; // 鰓裂内のプラスの値のみ足して表示する
+}
+echo "合計：$sum". PHP_EOL;
+?>
+
