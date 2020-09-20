@@ -85,3 +85,53 @@ if ($sex == "woman") {			// 性別のtrue
 	echo "女性のみの募集です。";	// 性別のfalse
 }
 ?>
+
+<?php
+$color = "red";
+switch ($color) {
+	case "green":	// 値がGreenの場合、$priceは120円
+		$price = 120;
+		break;
+	case "red":		// 値がRedの場合、$priceは140円
+		$price = 140;
+		break;
+	case "blue":	// 値がBlueの場合、$priceは160円
+		$price = 160;
+		break;
+	default:		// 値がそれ以外の場合、$priceは100円
+		$price = 100;
+		break;
+}
+echo "{$color}は{$price}円です。";
+?>
+
+<?php
+$color = "yellow";
+$price = 100;
+switch ($color) { // switchに条件指定がない場合の処理
+	case "red":
+		$price = 120;
+		break;
+	case "blue":
+		$price = 160;
+		break;
+}
+echo "{$color}は{$price}円です。";
+?>
+
+<?php
+$color = "green";
+switch ($color) {
+	case "green":	// 値がGreenとRedの場合
+	case "red":		// Breakさせずに条件を増やす(GreenもRedも同じ値段)
+		$price = 140;
+		break;
+	case "blue":
+		$price = 160;
+		break;
+	default:
+		$price = 100;
+		break;
+}
+echo "{$color}は{$price}円です。";
+?>
