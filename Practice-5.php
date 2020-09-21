@@ -184,3 +184,90 @@ for ($i=0; $i < $length; $i++) {
 }
 ?>
 
+<?php // 文字変換をする　mb_convert_kana()
+$msg = "Hello PHP を始めよう！！";
+echo mb_convert_kana($msg, "as"); // as => 英数記号文字を半角にする(a)、スペースを半角にする(s)の組み合わせ
+?>
+
+<?php
+$msg = "Hello PHPを始めよう！！";
+echo mb_convert_kana($msg, "AS"); // AS => 半角英数記号を全角英数記号に変換(A),半角スペースを全角スペースに変換(S)の組み合わせ
+?>
+
+<?php
+$yomi = "ふじのさぶろう";
+$hankaku_katakana = mb_convert_kana($yomi, "h"); // h => ひらがなを半角カタカナに変換
+$zenkaku_katakana = mb_convert_kana($yomi, "C"); // C => ひらがなを全角カタカナに変換
+echo $hankaku_katakana. PHP_EOL;
+echo $zenkaku_katakana;
+?>
+
+<?php
+$yomi1 = "ｽｺｯﾄ・ﾗﾌｧﾛ";
+$yomi2 = "チャーリー・ミシガン";
+$hiragana1 = mb_convert_kana($yomi1, "HcV"); // H => 半角カタカナをひらがなに変換
+$hiragana2 = mb_convert_kana($yomi2, "HcV"); // c => 全角カタカナをひらがなに変換, V => 濁点付きの文字を1文字に変換
+echo $hiragana1. PHP_EOL;
+echo $hiragana2;
+?>
+
+<?php
+$yomi1 = "ﾌｼﾞﾔﾏｻｸﾗ";
+$yomi2 = "あしがらきんたろう";
+$hiragana1 = mb_convert_kana($yomi1, "KCV"); // K => 半角カタカナを全角カタカナに変換
+$hiragana2 = mb_convert_kana($yomi2, "KCV"); // C => ひらがなを全角カタカナに変換, V => 濁点付きの文字を1文字に変換
+echo $hiragana1. PHP_EOL;
+echo $hiragana2;
+?>
+
+<?php // 英文字の大文字変換　strtoupper()
+$msg = "Apple iPhone";
+echo strtoupper($msg);
+?>
+
+<?php // 英文字の小文字変換　strtolower()
+$msg = "Apple iPhone";
+echo strtolower($msg);
+?>
+
+<?php // 先頭の文字ののみ大文字に変換 ucwords()
+$msg = "THE QUICK BROWN FOX";
+echo ucwords(strtolower($msg)); // strlowerで全て小文字に変換後,ucwordsで先頭の文字のみ大文字に変換する
+?>
+
+<?php // 不要な文字の削除　trim()
+$msg = "\tHello World!!";
+$result = trim($msg);
+echo "処理前:". PHP_EOL;
+echo "[", $msg, "]".PHP_EOL;
+echo "処理後:". PHP_EOL;
+echo "[", $result, "]";
+?>
+
+<?php // 前後にある不要な空白と改行の削除
+$msg = "  東京都千代田区".PHP_EOL;
+$result = trim($msg, "\x20\t\n\r\0\v ");
+echo "処理前:". PHP_EOL;
+echo "[", $msg, "]".PHP_EOL;
+echo "処理後:". PHP_EOL;
+echo "[", $result, "]";
+?>
+
+<?php // 文字列からHTMLのタグを取り除く strip_tags()
+$msg = "<p><b> 北原白秋「砂山」</b> 海は荒海 <br> 向こうは佐渡よ <br></p>";
+echo strip_tags($msg);
+?>
+
+<?php // 文字列をURLエンコードする rawurlencode()
+$page = "PHPサンプル.html";
+$path = rawurlencode($page);
+$url = "http://sample.com/{$path}";
+echo $url;
+?>
+
+<?php // URLデコードする　rawurldecode()
+$encode = "PHP%207%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB.html";
+$decode = rawurldecode($encode);
+echo $decode;
+?>
+

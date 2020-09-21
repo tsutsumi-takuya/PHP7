@@ -25,6 +25,10 @@ function prise_2($str) {
 }
 ?>
 
+<?php
+$msg = "東京 <_> 京都　'Eat & Run' ツアー";
+?>
+
 <body>
 	<div class="main">
 			前回のオリンピックは
@@ -74,6 +78,10 @@ function prise_2($str) {
 	echo prise_2($msg1);
 	echo PHP_EOL;
 	echo prise_2($msg2);
+	?>
+
+	<?php
+	echo htmlspecialchars($msg, ENT_QUOTES, 'UTF-8'); // エンティティに変換して出力
 	?>
 
 </body>
