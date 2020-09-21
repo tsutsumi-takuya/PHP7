@@ -12,6 +12,19 @@ $year2 = "2020年";
 $age = 25;
 ?>
 
+<?php
+function prise_2($str) {
+	$kakaku = 3000;
+	$length = mb_strlen($str); // 文字数を調べる
+	if ($length>10) {
+		$kakaku += ($length - 10)*100;
+	}
+	$kakaku = number_format($kakaku);
+	$result = "{$length}文字、{$kakaku}円";
+	return $result;
+}
+?>
+
 <body>
 	<div class="main">
 			前回のオリンピックは
@@ -53,6 +66,14 @@ $age = 25;
 		}
 		return $ryoukin;
 	}
+	?>
+
+	<?php
+	$msg1 = "Hello:world!";
+	$msg2 = "ハローワールド";
+	echo prise_2($msg1);
+	echo PHP_EOL;
+	echo prise_2($msg2);
 	?>
 
 </body>
