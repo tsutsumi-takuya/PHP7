@@ -271,3 +271,128 @@ $decode = rawurldecode($encode);
 echo $decode;
 ?>
 
+<?php // 文字列と文字列の比較
+function holiday($youbi) {
+	if (($youbi == "土曜日") || ($youbi == "日曜日")) {
+		echo $youbi, "はお休みです。".PHP_EOL;
+	} else {
+		echo $youbi, "はお仕事です。".PHP_EOL;
+	}
+}
+holiday("金曜日");
+holiday("土曜日");
+holiday("日曜日");
+?>
+
+<?php // 文字列と数値の比較
+function check($a, $b) {
+	if ($a == $b) { // == での比較なので精度が低い
+		echo "{$a}と{$b}は同じ".PHP_EOL;
+	} else {
+		echo "{$a}と{$b}は違う".PHP_EOL;
+	}
+}
+check("7cm", "7cm");
+check("7km", "7cm");
+check("7人", 7);
+check("PHP7", 7);
+check("七", 0);
+?>
+
+<?php
+function check_2($a, $b) {
+	if ($a === $b) { // === での比較なので精度が高い
+		echo "{$a}と{$b}は同じ".PHP_EOL;
+	} else {
+		echo "{$a}と{$b}は違う".PHP_EOL;
+	}
+}
+check_2("7cm", "7cm");
+check_2("7km", "7cm");
+check_2("7人", 7);
+check_2("PHP7", 7);
+check_2("七", 0);
+?>
+
+<?php // アルファベット順での比較
+function compare($a, $b) {
+	if ($a < $b) {
+		echo "{$a}、{$b}の順番".PHP_EOL;
+	} else if ($a == $b) {
+		echo "{$a}、{$b}は同じ".PHP_EOL;
+	} else if ($a > $b) {
+		echo "{$b}、{$a}の順番".PHP_EOL;
+	}
+}
+compare("apple", "apple");		// 同じ
+compare("apple", "beatles");	// beatlesのが後
+compare("apple", "android");	// androidのが前
+compare("apple", "Apple");		// 大文字のが前
+?>
+
+<?php // キャスト演算子の使用
+function compare_2($a, $b) {
+	if ($a < $b) {
+		echo "{$a}、{$b}の順番".PHP_EOL;
+	} else if ($a == $b) {
+		echo "{$a}、{$b}は同じ".PHP_EOL;
+	} else if ($a > $b) {
+		echo "{$b}、{$a}の順番".PHP_EOL;
+	}
+}
+compare_2("120", 99); // 文字列と数値の比較
+compare_2("A5", 0);
+$num = 99;
+compare_2("A5", (string)$num); // $numをstring型にキャストして比較
+?>
+
+<?php // 文字列の大きさを比較 strcmp()
+function compareStr($a, $b) {
+	$result = strcmp($a, $b); // 文字列にキャストして比較
+	if ($result < 0) {
+		echo "{$a}、{$b}の順番".PHP_EOL;
+	} else if ($result == 0) {
+		echo "{$a}、{$b}は同じ".PHP_EOL;
+	} else if ($result > 0) {
+		echo "{$b}、{$a}の順番".PHP_EOL;
+	}
+}
+compareStr("123", 99);
+compareStr("A123", 99);
+compareStr("009", 99);
+?>
+
+<?php // 大文字と小文字を区別せずに比較 strcasecmp()
+$id1 = "AB12r";
+$id2 = "ab12r";
+$result = strcasecmp($id1, $id2);
+echo "{$id1}と{$id2}の値を比較した結果、";
+if ($result == 0) {
+	echo "一致致しました。". PHP_EOL;
+} else {
+	echo "不一致でした。";
+}
+?>
+
+<?php // 前方一致で比較する strncasecmp()
+function check_3($str2) {
+	$str1 = "ABC";
+	$result = strncasecmp($str1, $str2, strlen($str1));
+	echo "{$str2}は";
+	if ($result == 0) {
+		echo "{$str1}から始まる。". PHP_EOL;
+	} else {
+		echo "その他。".PHP_EOL;
+	}
+}
+$id5 = "ABCR70"; // 大文字と小文字を区別せずに比較
+$id6 = "xbcM65";
+$id7 = "AbcW71";
+$id8 = "xABC68"; // ABCが含まれているが先頭ではない
+
+check_3($id5);
+check_3($id6);
+check_3($id7);
+check_3($id8);
+?>
+
