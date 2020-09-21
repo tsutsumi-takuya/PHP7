@@ -396,3 +396,153 @@ check_3($id7);
 check_3($id8);
 ?>
 
+<?php // 文字列を検索する mb_strpos()
+function check_4($target, $str) {
+	$result = mb_strpos($target, $str);
+		if ($result === false) {
+			echo "[{$str}]は[{$target}]には含まれていない。". PHP_EOL;
+		} else {
+			echo "[{$str}]は[{$target}]の{$result}文字目にあります。". PHP_EOL;
+		}
+}
+check_4("東京都渋谷区神南", "渋谷");
+check_4("東京都渋谷区神南", "新宿");
+check_4("PHP, Swift, C++", "PHP");
+check_4("PHP, Swift, C++", "Python");
+?>
+
+<?php // 個数を調べる　mb_substr_count()
+function check_5($target) {
+	$result = mb_substr_count($target, "不可");
+		if ($result >= 3) {
+			echo "不可が{$result}個あるので、再試験です。". PHP_EOL;
+		} else {
+			echo "不可が{$result}個だけなので、合格です。". PHP_EOL;
+		}
+}
+check_5("優、不可、良、可、優、可");
+check_5("可、優、不可、不可、優、不可");
+check_5("不可、可、不可、不可、良、不可");
+check_5("可、良、良、不可、良、不可");
+?>
+
+<?php // 見つかった位置から後ろの文字列を表示 mb_stristr()
+function pickout($target, $str) {
+	$result = mb_stristr($target, $str);
+	if ($result === false) {
+		echo "(not found)". PHP_EOL;
+	} else {
+		echo "{$result}". PHP_EOL;
+	}
+}
+pickout("東京都港区赤坂2-3-4", "赤坂");
+pickout("東京都渋谷区神南1-1-1", "渋谷区");
+pickout("東京都渋谷区道玄坂5-5-5", "原宿");
+?>
+
+<?php // 検索して置換する str_replace()
+$subject = "我輩は猫である。";
+echo str_replace("猫", "犬", $subject). PHP_EOL; // 猫の部分を犬に置換
+echo str_replace("猫", "馬", $subject). PHP_EOL; // 猫の部分を馬に置換
+echo $subject. PHP_EOL; // 元の文字列は変化しない
+?>
+
+<?php // 置換した個数を数える str_ireplace()
+$subject = "Apple Pie";
+$result = str_ireplace("p", "?", $subject, $count); // pの部分を?に置換、引数として$subject、カウントとして$countの設定
+echo "置換前：{$subject}". PHP_EOL; // 置換前の状態の表示
+echo "置換後：{$result}". PHP_EOL; // pが?に置換されたものの表示
+echo "個数：{$count}". PHP_EOL; // 置換された個数の表示
+?>
+
+<?php // 複数の検索文字を別の文字に置換 str_replace()
+$search = ["鈴木さん", "35歳"];
+$replace = ["Aさん", "X歳"];
+$subject = "担当は鈴木さんです、鈴木さんは35歳です。".PHP_EOL;
+$result = str_replace($search, $replace, $subject);
+echo "置換前：{$subject}". PHP_EOL; // 担当は鈴木さんです、鈴木さんは35歳です。
+echo "置換後：{$result}". PHP_EOL; // 担当はAさんです、AさんはX歳です。
+?>
+
+<?php
+$search = ["XG", "P10"];
+$replace = ["XP", "P10a"];
+$subject = "XG90, XG100, P10, P15"; // XG100 => XP10a0 ※ XP100のP10部分　=> P10aに置換されてしまった
+$result = str_replace($search, $replace, $subject);
+echo "置換前：{$subject}". PHP_EOL;
+echo "置換後：{$result}". PHP_EOL;
+?>
+
+<?php // 正規表現 preg_match()
+$result1 = preg_match("/46-49/u", "確か49-46でした。"); // 46-49が含まれていないので,int(0) ※ u => UTF-8
+$result2 = preg_match("/46-49/u", "たぶん46-49でした。"); // 46-49が含まれているので,int(1)
+$result3 = preg_match("/46-49u", "49-46"); // 式が間違っているので,bool(false)
+var_dump($result1);
+var_dump($result2);
+var_dump($result3);
+?>
+
+<?php
+$result1 = preg_match("/4.-49/u", "確か49-46でした。"); // 4?-49と一致していないので,int(0)
+$result2 = preg_match("/4.-49/u", "たぶん46-49でした。"); // 4?-49と一致していないので,int(1)
+$result3 = preg_match("/4.-49/u", "41-49だったかな？"); // 4?-49と一致していないので,int(1)
+var_dump($result1);
+var_dump($result2);
+var_dump($result3);
+?>
+
+<?php
+$result1 = preg_match("/4[6-9]-49/u", "確か49-46でした。"); // [6-9]の場合は,int(1)
+$result2 = preg_match("/4[6-9]-49/u", "たぶん46-49でした。");
+$result3 = preg_match("/4[6-9]-49/u", "41-49だったかな？");
+var_dump($result1);
+var_dump($result2);
+var_dump($result3);
+?>
+
+<?php // 区切り文字
+$filepath = "/good/image/cat";
+var_dump(preg_match("/\/image\//u", $filepath)); // 区切り文字 => /
+var_dump(preg_match("#/image/#u", $filepath)); // 区切り文字 => #
+?>
+
+<?php
+$pattern = "/赤の玉/u";
+var_dump(preg_match($pattern, "赤の玉"));
+var_dump(preg_match($pattern, "青の玉"));
+var_dump(preg_match($pattern, "黄色の玉"));
+?>
+
+<?php
+$pattern = "/[赤青緑]の玉/u"; // 文字の中に[赤青緑]が含まれる条件の定義
+var_dump(preg_match($pattern, "赤の玉"));
+var_dump(preg_match($pattern, "青の玉"));
+var_dump(preg_match($pattern, "緑の玉"));
+var_dump(preg_match($pattern, "緑の箱"));
+?>
+
+<?php
+$pattern = "/[^赤青]木/u"; // ^ => 否定　※ 含まれていない時にマッチ
+var_dump(preg_match($pattern, "大木"));
+var_dump(preg_match($pattern, "青木"));
+var_dump(preg_match($pattern, "赤木"));
+var_dump(preg_match($pattern, "赤木、白木"));
+?>
+
+<?php
+$pattern = "/[A-F][1-9]/u"; // A1 ~ F9でマッチする
+var_dump(preg_match($pattern, "B8"));
+var_dump(preg_match($pattern, "G7"));
+var_dump(preg_match($pattern, "D6"));
+var_dump(preg_match($pattern, "a2"));
+var_dump(preg_match($pattern, "1A")); // 並びが逆なのでマッチしない
+?>
+
+<?php
+$pattern = "/[A-F]-[1-9]-[0-9a-zA-Z]/u"; // [0-9] => 全ての数字, [a-z] => 全ての小文字英字, [A-Z] => 全ての大文字英字, [a-zA-Z] => 全てのアルファベット, [0-9a-zA-Z] => 全ての英数字
+var_dump(preg_match($pattern, "A-5-5"));
+var_dump(preg_match($pattern, "F-9-c"));
+var_dump(preg_match($pattern, "G-17-10"));
+var_dump(preg_match($pattern, "a-2-9"));
+?>
+
