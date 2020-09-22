@@ -546,3 +546,74 @@ var_dump(preg_match($pattern, "G-17-10"));
 var_dump(preg_match($pattern, "a-2-9"));
 ?>
 
+<?php
+$pattern = "/田中..子/u"; // 子の前が２文字でないとマッチしない
+var_dump(preg_match($pattern, "田中幸子"));
+var_dump(preg_match($pattern, "田中明子"));
+var_dump(preg_match($pattern, "田中亜紀子"));
+var_dump(preg_match($pattern, "田中向井坂子"));
+?>
+
+<?php
+$pattern = "/^山/u"; // 先頭が山でないとマッチしない
+var_dump(preg_match($pattern, "山田建設"));
+var_dump(preg_match($pattern, "山田洋子"));
+var_dump(preg_match($pattern, "田中亜紀子"));
+var_dump(preg_match($pattern, "田中向井坂子、山崎商店"));
+?>
+
+<?php
+$pattern = "/^山..子$/u"; // 山から始まり子で終わる ※ 子の前は２文字
+var_dump(preg_match($pattern, "山田智子"));
+var_dump(preg_match($pattern, "山本あさ子"));
+var_dump(preg_match($pattern, "山崎ともみ"));
+?>
+
+<?php
+$pattern = "/東京|横浜/u"; // 東京または横浜にマッチする
+var_dump(preg_match($pattern, "東京タワー"));
+var_dump(preg_match($pattern, "横浜駅前"));
+var_dump(preg_match($pattern, "新東京美術館"));
+var_dump(preg_match($pattern, "東横ホテル"));
+?>
+
+<?php
+$pattern = "/[0-9]{3}-[0-9]{2}/u"; // 数字３桁-数字２桁マッチする
+var_dump(preg_match($pattern, "123-45"));
+var_dump(preg_match($pattern, "090-88"));
+var_dump(preg_match($pattern, "11-222"));
+var_dump(preg_match($pattern, "abc-de"));
+?>
+
+<?php
+$pattern = "/[a-z]{4,8}/u"; // a-zの４〜８文字
+var_dump(preg_match($pattern, "cycling"));
+var_dump(preg_match($pattern, "marathon"));
+var_dump(preg_match($pattern, "run"));
+var_dump(preg_match($pattern, "SURF"));
+?>
+
+<?php
+$pattern = "/(090|080|070)-{0,1}[0-9]{4}-{0,1}[0-9]{4}/u"; // 先頭が090,080,070のいずれか,ハイフンは０個か１個,０〜９の４桁
+var_dump(preg_match($pattern, "090-1234-5678"));
+var_dump(preg_match($pattern, "080-1234-5678"));
+var_dump(preg_match($pattern, "07012345678"));
+var_dump(preg_match($pattern, "12345678"));
+?>
+
+<?php
+$pattern = "/(090|080|070)(-?\d{4}){2}/u"; // 上記の簡略形(携帯番号)
+var_dump(preg_match($pattern, "090-1234-5678"));
+var_dump(preg_match($pattern, "080-1234-5678"));
+var_dump(preg_match($pattern, "07012345678"));
+var_dump(preg_match($pattern, "12345678"));
+?>
+
+<?php // URLに含まれるメタ文字のエスケープ preg_quote()
+$escaped = preg_quote("http://sample.com/php/", "/");
+$pattern = "/{$escaped}/u";
+echo $pattern, "\n";
+var_dump(preg_match($pattern, "URLはhttp://sample.com/php/です。"));
+var_dump(preg_match($pattern, "URLはhttp://sample.com/swift/です。"));
+?>
+
