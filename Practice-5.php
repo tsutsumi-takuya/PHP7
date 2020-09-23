@@ -616,4 +616,3 @@ echo $pattern, "\n";
 var_dump(preg_match($pattern, "URLはhttp://sample.com/php/です。"));
 var_dump(preg_match($pattern, "URLはhttp://sample.com/swift/です。"));
 ?>
-
