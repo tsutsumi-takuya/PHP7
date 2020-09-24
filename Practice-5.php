@@ -616,3 +616,86 @@ echo $pattern, "\n";
 var_dump(preg_match($pattern, "URLはhttp://sample.com/php/です。"));
 var_dump(preg_match($pattern, "URLはhttp://sample.com/swift/です。"));
 ?>
+
+<?php // マッチした値を取り出す preg_match()
+$pattern = "/佐.+子/u";
+$subject = <<< "names"
+佐藤悠己
+佐藤ゆう子
+塩田朋子
+杉山香
+names;
+$result = preg_match($pattern, $subject, $matches); // マッチテスト
+if ($result === false) {
+	echo "エラー：", preg_last_error(); // preg_last_error => 直近のPCRE正規表現処理のエラーコードを返す
+} else if ($result == 0) {
+	echo "マッチした値はありませんでした。";
+} else {
+	echo "[", $matches[0], "]が見つかりました。"; // $matches[0]には配列で値が入る
+}
+?>
+
+<?php // マッチした全ての値を取り出す preg_match_all()
+$pattern = "/201[1-5](AX|FX)/i"; // 2012 ~ 2015 のAX型またはFX型を探す。i => 大文字と小文字の区別をしない
+$subject = "2011AX, 2012Fx, 2012AF, 2013FX, 2015ax, 2016Fx";
+$result = preg_match_all($pattern, $subject, $matches);
+if ($result === false) {
+	echo "エラー：", preg_last_error(); // preg_last_error => 直近のPCRE正規表現処理のエラーコードを返す
+} else if ($result == 0) {
+	echo "マッチした型式はありません。";
+} else {
+	echo "{$result}個マッチしました。". PHP_EOL;
+	echo implode(", ", $matches[0]); // implode() => 配列の値を取り出して文字列に連結
+}
+?>
+
+<?php // サブパターンの値を調べる
+$pattern = "/2013([A-F]-(..))/"; // ()で囲まれているサブパターン
+$subject = "2012A-sx, 2013F-fx, 2013G-fx, 2013A-dx, 2015a-sx";
+$result = preg_match_all($pattern, $subject, $matches);
+if ($result === false) {
+	echo "エラー：", preg_last_error();
+} else if ($result == 0) {
+	echo "マッチした型式はありません。";
+} else {
+	$all = implode(", ", $matches[0]); // マッチした値
+	$model = implode(", ", $matches[1]); // サブパターン(A-F)にマッチした値
+	$type = implode(", ", $matches[2]); // サブパターン(..)にマッチした値
+	echo "見つかった型式：{$all}". PHP_EOL;
+	echo "モデル：{$model}". PHP_EOL;
+	echo "タイプ：{$type}". PHP_EOL;
+}
+?>
+
+<?php // 正規表現を使って検索置換を行う preg_replace()
+function numbermask($subject) {
+	$pattern = "/^\d{4}\s?\d{4}\s?\d{4}\s?\d{2}(\d{2})$/"; // クレジットカード番号設定
+	$replacement = "**** **** **** **$1"; // 最後の2文字は表示
+	$result = preg_replace($pattern, $replacement, $subject);
+
+	if (is_null($result)) { // 実行結果のチェック
+	echo "エラー：", preg_last_error();
+	} else if ($result == $subject) {
+		echo "番号エラー";
+	} else {
+		return $result;
+	}
+}
+
+$number1 = "1234 5678 9012 3456";
+$number2 = "6543210987654321";
+$num1 = numbermask($number1); // 番号のチェックをして伏せ字にする
+$num2 = numbermask($number2);
+echo "{$number1}は次のようになります！". PHP_EOL;
+echo $num1. PHP_EOL;
+echo "{$number2}は次のようになります！". PHP_EOL;
+echo $num2. PHP_EOL;
+?>
+
+<?php // パターンと置換文字を配列で指定する
+$pattern = ["/開催日/u","/開始時刻/u"]; // 置き代えられる文字
+$replacement = ["金曜日","午後２：３０"]; // 見つかった文字と置き換える値
+$subject = "次回は開催日の開始時刻からです！";
+$result = preg_replace($pattern, $replacement, $subject);
+echo $result;
+?>
