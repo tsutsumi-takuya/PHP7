@@ -40,3 +40,48 @@ for ($i = 0; $i < count($teamA); $i++) { // count()で個数のサーチ
 }
 ?>
 
+<?php // array() => インデックス配列の作成
+$colors = array("赤", "青", "黄色");
+print_r($colors); // print_r() => 値がインデックス番号と値のペアで出力
+?>
+
+<?php // 配列に値の追加
+$colors = []; // 空の配列宣言
+$colors[] = "赤"; // 配列の追加 => インデック番号の指定なし
+$colors[] = "青";
+$colors[] = "黄色";
+$colors[] = "緑";
+$colors[] = "白";
+print_r($colors); // 表示
+?>
+
+<?php // 配列に値の追加
+$colors = []; // 空の配列宣言
+$colors[0] = "赤"; // インデックス番号指定
+$colors[1] = "青";
+$colors[5] = "黄色"; // この場合、[2] ~ [4]は空き番
+$colors[] = "白"; // [5]の次に追加される
+print_r($colors);
+?>
+
+<?php // 連想配列
+$goods = [
+"id" => "R56", // $goods配列の[id]には[R56]
+"size" => "M", // $goods配列の[size]には[M]
+"prise" => 2340 // $goods配列の[prise]には[2340]
+];
+print_r($goods);
+?>
+
+<?php // 連想配列
+$goods = [
+"id_2" => "R56", // $goods配列の[id]には[R56]
+"size_2" => "M", // $goods配列の[size]には[M]
+"prise_2" => 2340 // $goods配列の[prise]には[2340]
+];
+
+echo "ID : ", $goods["id_2"]. PHP_EOL;
+echo "SIZE : ", $goods["size_2"]. PHP_EOL;
+echo "PRISE : ", number_format($goods["prise_2"]). PHP_EOL;
+?>
+
