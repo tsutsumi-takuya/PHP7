@@ -80,8 +80,50 @@ $goods = [
 "prise_2" => 2340 // $goods配列の[prise]には[2340]
 ];
 
-echo "ID : ", $goods["id_2"]. PHP_EOL;
-echo "SIZE : ", $goods["size_2"]. PHP_EOL;
-echo "PRISE : ", number_format($goods["prise_2"]). PHP_EOL;
+echo "ID : ", $goods["id_2"]. PHP_EOL; // $goods配列の[id_2]の表示
+echo "SIZE : ", $goods["size_2"]. PHP_EOL; // $goods配列の[size_2]の表示
+echo "PRISE : ", number_format($goods["prise_2"]). PHP_EOL; // $goods配列の[prise_2]の表示 ※ number_format() => 円やドル表示
+?>
+
+<?php // 連想配列の値の変更
+$goods = [
+"id_3" => "R56",
+"size_3" => "M",
+"prise_3" => 2340
+];
+
+$goods["prise_3"] = 3500; // "prise_3"の値を更新
+
+echo "ID : ", $goods["id_3"]. PHP_EOL;
+echo "SIZE : ", $goods["size_3"]. PHP_EOL;
+echo "PRISE : ", number_format($goods["prise_3"]). PHP_EOL;
+?>
+
+<?php // 連想配列の要素追加
+$user = [];
+$user["name"] = "田中聖";
+$user["yomi"] = "たなかこうき";
+$user["age"] = 28;
+print_r($user);
+?>
+
+<?php // 文字列から配列の作成
+$data = "赤井一郎, 伊藤五郎, 上野慎二";
+$delimiter = ",";
+$namelist = explode($delimiter, $data); // explode(区切り文字, 文字列)
+print_r($namelist);
+?>
+
+<?php // 配列から文字列の作成
+$data = ["赤井一郎", "伊藤五郎", "上野慎二"];
+$glue = "様, ";
+$namelist = implode($glue, $data); // implode(連結文字, 配列)
+$namelist .="様"; // 最後の値に付かない為、補足
+print_r($namelist);
+?>
+
+<?php // 配列を定数にする
+define("RANK", ["松", "竹", "梅"]); // RANK定数の作成
+echo RANK[1];
 ?>
 
