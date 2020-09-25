@@ -127,3 +127,96 @@ define("RANK", ["松", "竹", "梅"]); // RANK定数の作成
 echo RANK[1];
 ?>
 
+<?php // インデックス配列から要素の削除
+$myArray = ["a", "b", "c", "d", "e"]; // 元の配列
+$removed = array_splice($myArray, 1, 2); // インデックス配列から値を取り除く
+echo '実行後：$myArray'. PHP_EOL;
+print_r($myArray);
+echo '戻り；$removed'. PHP_EOL;
+print_r($removed);
+?>
+
+<?php // インデックス配列から要素の削除
+$myArray = ["a" => 10, "b" => 20, "c" => 30, "d" => 40, "e" => 50]; // 元の配列
+$removed = array_splice($myArray, 1, 2); // インデックス配列から値を取り除く
+echo '実行後：$myArray'. PHP_EOL;
+print_r($myArray);
+echo '戻り；$removed'. PHP_EOL;
+print_r($removed);
+?>
+
+<?php // 配列の先頭から値を取り出す
+$myArray = ["a", "b", "c", "d"];
+$removed = array_shift($myArray); // $myArray[0]を削除
+echo '実行後：$myArray'. PHP_EOL;
+print_r($myArray);
+echo '戻り；$removed'. PHP_EOL;
+print_r($removed);
+?>
+
+<?php // インデックス配列から要素の削除
+$myArray = ["a", "b", "c", "d", "e"]; // 元の配列
+$replace = ["X", "Y", "Z"]; // 置換する配列
+$removed = array_splice($myArray, 1, 3, $replace); // 配列の要素を置換 => $myArray[1]~[3]が$replace[0]~[2]になる
+echo '実行後：$myArray'. PHP_EOL;
+print_r($myArray);
+echo '戻り；$removed'. PHP_EOL;
+print_r($removed);
+?>
+
+<?php // 配列の連結
+$a = ["a", "b", "c"]; // $a[0] ~ $a[2]
+$b = ["d", "e", "f", "g", "h"]; // $b[0] ~ $b[4]
+$result = $a + $b;
+print_r($result); // 連結すると、$a[0] ~ $a[2]と$b[3] ~ $b[4]の出力になる
+?>
+
+<?php // インデックス配列をarray_merge()で連結する
+$a = ["a", "b", "c"];
+$b = ["d", "e", "f"];
+$c = ["g", "h", "i"];
+$result = array_merge($a, $b, $c); // 複数の配列を連結
+print_r($result); // 要素が被ることなく表示
+?>
+
+<?php // 連想配列をarray_merge()で連結する
+$a = ["a" => 1, "b" => 2, "c" => 3];
+$b = ["b" => 40, "d" => 50]; // この時点で"b"は40に上書きされる
+$result = array_merge($a, $b); // 連想配列の連結
+print_r($result);
+?>
+
+<?php // 連想配列をarray_merge_recursive()で連結する
+$a = ["a" => 1, "b" => 2, "c" => 3];
+$b = ["b" => 40, "d" => 50];
+$result = array_merge_recursive($a, $b);
+print_r($result); // 重複したキー($a[1]と$b[0])の表示
+?>
+
+<?php // ２つの配列から連想配列を作成する
+$point = ["10", "20", "30", "40", "50"];
+$split = ["00:50:37", "01:39:15", "02:28:25", "03:21:37", "03:34:44"];
+$result = array_combine($point, $split); // arrary_combine(key, value) => 連想配列にする
+print_r($result);
+?>
+
+<?php // 配列から重複している値の削除
+$a = ["green", "red", "blue"];
+$b = ["blue", "pink", "yellow"];
+$c = ["pink", "white"];
+$all = array_merge($a, $b, $c);
+$unique = array_unique($all); // 重複した値の削除
+print_r($all); // 重複表示
+print_r($unique); // 削除後表示
+?>
+
+<?php // 配列の切り出し
+$myArray = ["a", "b", "c", "d", "e", "f"];
+$slice1 = array_slice($myArray, 0, 3); // インデックス番号０から３個の切り出し
+$slice2 = array_slice($myArray, 3, 2); // インデックス番号３から２個の切り出し
+$slice3 = array_slice($myArray, -3); // 後ろから３番目から最後までの切り出し
+print_r($slice1);
+print_r($slice2);
+print_r($slice3);
+?>
+
