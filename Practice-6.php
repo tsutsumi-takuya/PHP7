@@ -220,3 +220,120 @@ print_r($slice2);
 print_r($slice3);
 ?>
 
+<?php // 配列から順に値を取り出す foreach($array as $value)
+$valuelist = [5, -3, 12, 6, 9];
+$sum = 0;
+foreach ($valuelist as $value) { // 配列から順に値を取り出す
+	if ($value>0) { // $valueが0以上の場合
+		$sum += $value;
+	}
+}
+echo "正の値の合計は{$sum}です。";
+?>
+
+<?php // 配列からキーと値を順に取り出して繰り返す
+$data = ["ID" => "TR123", "商品名" => "ピークハント", "価格" => 14500];
+foreach ($data as $key => $value) { // $keyと$valueには$data配列の値が入る
+	echo $key, "：", $value. PHP_EOL; // $key => ID,商品名,価格　$value => TR123,ピークハント,14500
+}
+?>
+
+<?php // 配列から条件に当てはまる値の抽出 array_filter($myArray, callback)
+function isPlus($value) { // コールバック関数
+	return $value>0;
+}
+$valuelist = ["a" => 3, "b" => 0, "c" => 5, "d" => -2, "e" => 4];
+$filtered = array_filter($valuelist, "isPlus"); // isPlusの条件に当てはまる者のみ抽出
+print_r($filtered);
+?>
+
+<?php // インデックス配列を変数に展開
+$data = ["a987", "鈴木薫", "29"];
+list($id, $name, $age) = $data; // 配列$dataの値が各変数に入る
+echo "会員ID：", $id. PHP_EOL;
+echo "会員名前：", $name. PHP_EOL;
+echo "会員年齢：", $age. PHP_EOL;
+?>
+
+<?php // 配列の値を昇順にソートする
+$sort = [23, 16, 8, 42, 15, 4];
+sort($sort); // 値が小 → 大にソート
+print_r($sort);
+?>
+
+<?php // 配列の値を降順にソートする
+$sort = [23, 16, 8, 42, 15, 4];
+rsort($sort); // 値が大 → 小にソート
+print_r($sort);
+?>
+
+<?php // 配列の値を昇順にソートする
+$sort = [23, 16, 8, 42, 15, 4];
+$clone = $sort;
+sort($clone);
+rsort($reset);
+echo "元の配列：";
+print_r($sort). PHP_EOL;
+echo "変更後の配列：";
+print_r($clone). PHP_EOL;
+?>
+
+<?php // 連想配列の値を昇順にソートする
+$data = ["S" => 23, "M" => 36, "L" => 29];
+asort($data); // 値でソート
+print_r($data);
+?>
+
+<?php // 値の並びをシャッフルさせる
+$namelist = ["佐藤", "田中", "小林", "近藤"];
+shuffle($namelist); // シャッフル
+print_r($namelist);
+?>
+
+<?php // 値の並びを逆順にする array_reverse
+$namelist = ["佐藤", "田中", "小林", "近藤"];
+$result = array_reverse($namelist); // 逆にする
+print_r($result);
+?>
+
+<?php // 自然順に並べる
+$data = ["image7", "image12", "image1"];
+natsort($data); // 自然順にソート
+print_r($data);
+?>
+
+<?php // 配列の値を比較、検索する
+$numList = [1008, 1234, 1301]; // チェックする番号
+$numbers = [1301, 1206, 1008, 1214]; // 合格番号の配列
+
+function checkNumber($no) {
+	global $numbers;
+	if (in_array($no, $numbers)) { // 合格番号に$noが含まれているかのチェック
+		echo "{$no}番は合格です！！". PHP_EOL;
+	} else {
+		echo "{$no}番は不合格です。". PHP_EOL;
+	}
+}
+
+foreach ($numList as $value) {
+	echo checkNumber($value); // $numListの値を順番にチェックする
+}
+?>
+
+<?php // 文字列の配列を検索する(完全一致)
+$nameList = ["田中達也", "Sam smith", "新井貴子"];
+
+function nameCheck($name) {
+	global $nameList;
+	if (in_array($name, $nameList)) { // 合格番号に$noが含まれているかのチェック
+		echo "メンバーです。". PHP_EOL;
+	} else {
+		echo "メンバーではありません。". PHP_EOL;
+	}
+}
+echo nameCheck("田中達也"); // 完全一致なのでtrue
+echo nameCheck("新井"); // 不完全一致なのでfalse
+echo nameCheck("Sam smith"); // 完全一致なのでtrue
+echo nameCheck("SAM SMITH"); // 不完全一致なのでfalse
+?>
+
