@@ -53,9 +53,17 @@ require_once("Practice-7.php"); // ファイルの読み込み
 
 	<pre>
 		<?php
-		$runner1 = new Runner("福祉", 23);
-		print_r($runner1);
-		$runner1->who();
+		$runner1 = new Runner("福祉", 23); // Runnerクラスのインスタンス作成
+		print_r($runner1); // インスタンスの確認
+		$runner1->who(); // オーバーライドしたwho()の確認
+		?>
+	</pre>
+
+	<pre>
+		<?php
+		$myMilk = new Milk(); // Milkクラスのインスタンス作成
+		echo "作成日：", $myMilk->theDate. PHP_EOL;
+		echo "期限日：", $myMilk->limitDate. PHP_EOL;
 		?>
 	</pre>
 </body>

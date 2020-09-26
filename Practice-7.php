@@ -66,15 +66,15 @@ class Soccer extends Player // SoccerクラスにPlayerクラスの継承
 <?php
 require_once("Practice-7.php"); // Playerクラスファイルの読み込み
 
-class Runner extends Player {
+class Runner extends Player { // RunnerクラスにPlayerクラスの継承
 	public $age;
 
-	function __construct($name, $age) { // 
-		parent::__construct($name, $age);
+	function __construct($name, $age) { // コンストラクタ
+		parent::__construct($name); // 親クラス(Player)のコンストラクタの呼び出し
 		$this->age = $age;
 	}
 
-	public function who() { // インスタンスメソッド
+	public function who() { // Playerクラスのwho()をオーバーライドさせる
 		echo "{$this->name}です, {$this->age}歳です。". PHP_EOL;
 	}
 
@@ -83,3 +83,34 @@ class Runner extends Player {
 	}
 }
 ?>
+
+<?php
+trait DateTool { // DateToolトレイトの定義
+	public function ymdString($date) { // DateTimeを年月日の書式で返す
+		$dateString = $date->format('Y年m月d日');
+		return $dateString;
+	}
+
+	public function addYmdString($date, $days) { // 指定日数後の年月日で返す
+		$date->add(new DateInterval("P{$days}D"));
+		return $this->ymdString($date);
+	}
+}
+?>
+
+<?php
+require_once("Practice-7.php");
+
+class Milk {
+	use DateTool; // useキーワードでトレイトを指定
+	public $theDate;
+	public $limitDate;
+
+	function __construct() {
+		$now = new DateTime(); // 今日の日付を取得
+		$this->theDate = $this->ymdString($now); // 年月日に変換して設定
+		$this->limitDate = $this->addYmdString($now, 10); // 10日後の日付を作成
+	}
+}
+?>
+
