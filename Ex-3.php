@@ -1,5 +1,5 @@
 <?php
-require_once("Practice-7.php"); // Staffクラスファイルの読み込み
+require_once("Practice-7.php"); // ファイルの読み込み
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +38,25 @@ require_once("Practice-7.php"); // Staffクラスファイルの読み込み
 	</pre>
 
 	<pre>
-		
+		<?php
+		$player1 = new Soccer("シンジ"); // Soccerクラスのインスタンス作成
+		$player1->who(); // 親クラス(Player)のメソッドを試す
+		$player1->play(); // 子クラス(Soccer)のメソッドを試す
+		?>
+
+		<?php
+		$player2 = new Soccer("つばさ"); // Soccerクラスのインスタンス作成 ※ マジックメソッドの__toString()で文字列にキャスト
+		echo "{$player2}". PHP_EOL; // __toStringメソッドを試す
+		$player2->play();
+		?>
+	</pre>
+
+	<pre>
+		<?php
+		$runner1 = new Runner("福祉", 23);
+		print_r($runner1);
+		$runner1->who();
+		?>
 	</pre>
 </body>
 </html>

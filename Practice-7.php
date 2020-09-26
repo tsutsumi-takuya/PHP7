@@ -32,3 +32,54 @@ class Staff {
 }
 ?>
 
+<?php
+class Player { //Playerクラスの定義
+
+	public $name; // インスタンスプロパティ
+
+	function __construct($name = '名無し') { // $name = '' => 引数が省略された場合の初期値
+		$this->name = $name;
+	}
+
+	public function __toString() { // マジックメソッドの定義
+		return $this->name;
+	}
+
+	public function who() { // インスタンスメソッド
+		echo "{$this->name}です". PHP_EOL;
+	}
+}
+?>
+
+<?php
+require_once("Practice-7.php"); // Playerクラスファイルの読み込み
+
+class Soccer extends Player // SoccerクラスにPlayerクラスの継承
+{
+	public function play() { // インスタンスメソッド
+		echo "{$this->name}がシュート！！". PHP_EOL;
+	}
+}
+
+?>
+
+<?php
+require_once("Practice-7.php"); // Playerクラスファイルの読み込み
+
+class Runner extends Player {
+	public $age;
+
+	function __construct($name, $age) { // 
+		parent::__construct($name, $age);
+		$this->age = $age;
+	}
+
+	public function who() { // インスタンスメソッド
+		echo "{$this->name}です, {$this->age}歳です。". PHP_EOL;
+	}
+
+	public function play() { // インスタンスメソッド
+		echo "{$this->name}が走る！！s". PHP_EOL;
+	}
+}
+?>
