@@ -149,3 +149,94 @@ class MyClass {
 }
 ?>
 
+<?php
+interface WorldRule {
+	function hello();
+}
+?>
+
+<?php
+require_once("Practice-7.php");
+
+class Myclass_2 implements WorldRule { // WorldRuleインターフェースを採用
+
+	public function hello() {
+		echo "こんにちは". PHP_EOL;
+	}
+
+	public function thanks() {
+		echo "ありがとう". PHP_EOL;
+	}
+}
+?>
+
+<?php
+interface GameBook { // インターフェース
+	function newGame($point); // 引数が１つ
+	function play();
+	function isAlive():bool; // bool型での戻り値設定
+}
+?>
+
+<?php
+require_once("Practice-7.php");
+
+class MyGame implements GameBook { // GameBookのインターフェースを採用
+	public $hitPoint;
+
+	function __construct($point = 50) {
+		$this->newGame($point); // インスタンスの作成と同時にゲーム開始
+	}
+
+	public function newGame($point = 50) { // インターフェースの指定に基づき引数は１個
+		$this->hitPoint = $point;
+	}
+
+	public function play() {
+		$num = random_int(0, 50); // random_int(min, max)
+		if ($num%2 == 0) {
+			echo "{$num}ポイント増えました！". PHP_EOL;
+			$this->hitPoint += $num;
+		} else {
+			echo "{$num}ポイント減りました！". PHP_EOL;
+			$this->hitPoint -= $num;
+		}
+		echo "現在{$this->hitPoint}ポイントです。". PHP_EOL;
+	}
+	public function isAlive():bool { // インターフェースの指定に基づきbool型で戻り値
+		return ($this->hitPoint > 0); // マイナスになると終了
+	}
+}
+?>
+
+<?php
+abstract class ShopBiz {
+	abstract function thanks(); // 抽象メソッド
+	protected $uriage = 0; // インスタンスメンバー
+	protected function sell($price) {
+		if (is_numeric($price)) {
+			echo "{$price}円です。";
+			$this->uriage += $price;
+		}
+		$this->thanks(); // 子クラスで実装されるメソッドの呼び出し
+	}
+}
+?>
+
+<?php
+class MyShop extends ShopBiz { // 抽象クラスを継承
+	public function thanks() { // ShopBizクラスの抽象メソッド(thanks())のを実装
+		echo "ありがとう御座いました！". PHP_EOL;
+	}
+
+	public function hanbai($tanka, $kosu) {
+		$price = $tanka * $kosu; // ShopBizクラスから継承しているメソッドを実行
+		$this->sell($price);
+	}
+
+	public function getUriage() { // 売上合計
+		echo "売上合計は{$this->uriage}です。". PHP_EOL;
+	}
+}
+?>
+

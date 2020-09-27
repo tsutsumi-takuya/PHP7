@@ -81,5 +81,28 @@ require_once("Practice-7.php"); // ファイルの読み込み
 		$myObj->hanahello();
 		?>
 	</pre>
+
+	<pre>
+		<?php
+		$myPlayer = new MyGame();
+		for ($i = 0; $i < 10; $i++) {
+			$myPlayer->play();
+			if (! $myPlayer->isAlive()) {
+				break;
+			}
+		}
+		echo "ゲームオーバー！！". PHP_EOL;
+		?>
+	</pre>
+
+	<pre>
+		<?php
+		$myObj = new MyShop();
+		$myObj->hanbai(240, 3);
+		$myObj->hanbai(400, 1);
+		$myObj->getUriage();
+		?>
+	</pre>
+
 </body>
 </html>
