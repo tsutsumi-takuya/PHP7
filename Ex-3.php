@@ -66,5 +66,20 @@ require_once("Practice-7.php"); // ファイルの読み込み
 		echo "期限日：", $myMilk->limitDate. PHP_EOL;
 		?>
 	</pre>
+
+	<pre>
+		<?php
+		$myObj = new MyClass();
+		$myObj->hello();
+		echo PHP_EOL;
+		$myObj->weekday();
+		echo PHP_EOL;
+		$myObj->hello();
+		echo PHP_EOL;
+		$myObj->tarohello();
+		echo PHP_EOL;
+		$myObj->hanahello();
+		?>
+	</pre>
 </body>
 </html>

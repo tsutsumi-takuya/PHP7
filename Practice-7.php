@@ -114,3 +114,38 @@ class Milk {
 }
 ?>
 
+<?php
+trait Tarotool { // トレイトの定義
+	public function hello() {
+		echo "ハロー！！";
+	}
+	public function weekday() {
+		$week = ["日", "月", "火", "水", "木", "金", "土"]; // 曜日の定義
+		$now = new DateTime(); // 現時点での日付取得
+		$w = (int)$now->format('w'); // 曜日をint型に変換
+		$weekday = $week[$w]; // 変数へ曜日の代入
+		echo "今日は", $weekday, "曜日です。". PHP_EOL;
+	}
+}
+?>
+
+<?php
+trait Hanatool { // トレイトの定義
+	public function hello() {
+		echo "ごきげんよう！！";
+	}
+}
+?>
+
+<?php
+require_once("Practice-7.php");
+
+class MyClass {
+	use Tarotool, Hanatool {
+		Tarotool::hello as taroHello; // 別名のhelloを作成
+		Hanatool::hello as hanaHello;
+		Hanatool::hello insteadof Tarotool; // A insteadof B => Bの代わりにA ※ この場合HanaToolのhello()を使用
+	}
+}
+?>
+
